@@ -1,0 +1,13 @@
+{
+  "name": "harbourlight-clientside",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Harbourlight Community Events public website",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#122c34">
+  <meta name="description" content="Search Harbourlight community events by date, location and category.">
+  <title>Find events | Harbourlight</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script>
+</head>
+<body data-page="search">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="/index.html" aria-label="Harbourlight home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>harbourlight<span class="brand-dot">.</span></span></a><nav class="main-nav" aria-label="Main navigation"><a href="/index.html">Home</a><a href="/search.html" aria-current="page">Find events</a></nav><a class="button button-small button-dark header-cta" href="/search.html">Explore events <span aria-hidden="true">↗</span></a></div></header>
+  <main id="main">
+    <section class="page-hero search-hero"><div class="shell"><p class="eyebrow"><span class="eyebrow-line"></span> Your next good thing</p><div class="page-hero-row"><h1>Find your <em>moment.</em></h1><p>Explore upcoming events and find a cause, place or date that feels right for you.</p></div></div></section>
+    <section class="search-section" aria-labelledby="filter-title"><div class="shell"><div class="filter-panel"><div class="filter-top"><div><p class="eyebrow">Make it yours</p><h2 id="filter-title">Explore events</h2></div><span class="filter-ornament" aria-hidden="true">✳</span></div>
+      <form id="search-form" class="filter-form" action="/search.html" method="get">
+        <div class="field"><label for="date">Date</label><input id="date" name="date" type="date"><small>Event start date in Sydney</small></div>
+        <div class="field"><label for="location">Location</label><input id="location" name="location" type="search" placeholder="City or venue" maxlength="100" autocomplete="off"><small>Search a city or venue</small></div>
+        <div class="field"><label for="category">Category</label><select id="category" name="category"><option value="">All categories</option></select><small>Choose a cause</small></div>
+        <div class="filter-actions"><button class="button button-coral" type="submit">Search events <span aria-hidden="true">↗</span></button><button class="button-reset" id="clear-filters" type="button">Clear filters</button></div>
+      </form></div>
+      <div class="results-heading"><div><p class="eyebrow">The calendar</p><h2 id="results-title">What’s <em>on</em></h2></div><p id="results-count" role="status" aria-live="polite"></p></div>
+      <div id="search-status" class="status-panel" role="status" aria-live="polite">Loading events…</div><div id="search-events" class="event-grid" hidden></div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-top"><div><a class="brand brand-footer" href="/index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>harbourlight<span class="brand-dot">.</span></span></a><p>Good things happen together.</p></div><nav aria-label="Footer navigation"><a href="/index.html">Home</a><a href="/search.html">Find events</a></nav></div><div class="shell footer-bottom"><span>© 2026 Harbourlight Community Events</span><span>Made for a brighter community.</span></div></footer>
+</body></html>
