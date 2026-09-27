@@ -20,6 +20,6 @@ This directory is a fresh implementation of the supplied PROG2002 A2 brief. The 
 4. Test complete workflows, invalid requests and responsive layouts; record actual results. **Done for the checks in `docs/VERIFICATION.md`.**
 5. Fill a copy of the provided report template from the implemented system and visually inspect every page. **Done.**
 6. Prepare a bilingual, timed narration script with separate screen actions; student records the video. **Script done; recording remains with the student.**
-7. Create the two required ZIPs and verify installation from extracted copies. Commit and push to the requested GitHub account. **Source packages and extracted smoke test done; final documentation push pending.**
+7. Create the two required ZIPs and verify installation from extracted copies. Commit and push to the requested GitHub account. **Done.**
 
 No test result, screenshot, commit history, recording, marker access, or grade is claimed until verified.

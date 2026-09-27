@@ -18,7 +18,7 @@ Run `npm test` in both directories. With MySQL and `api/.env` configured, run `n
 
 - [Filled report](delivery/PROG2002%20A2%20Report.docx). Student ID and name fields are blank for the student to complete.
 - [Bilingual demo script](docs/VIDEO-SCRIPT.md). It is a rehearsal aid; the student must record and upload the actual video.
-- `delivery/USERNAMEA2-api.zip` and `delivery/USERNAMEA2-clientside.zip` are the source packages. Replace `USERNAME` with the course-required prefix when known.
+- `delivery/USERNAMEA2-api.zip` and `delivery/USERNAMEA2-clientside.zip` are generated local source packages for submission; ZIPs are excluded from Git. Replace `USERNAME` with the course-required prefix when known. Run `python tools/package_submission.py` to regenerate them.
 - [Public GitHub repository](https://github.com/daitongxiao/prog2002-a2-harbourlight). The user explicitly requested public visibility. The assessment brief says other students should not access the work, so this visibility should be checked against the course's marking instructions before submission.
 
 No private `.env`, credentials, `node_modules`, temporary database files or test render images belong in the source packages.
