@@ -8,9 +8,9 @@ from lxml import etree
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = Path(r"D:\OneDrive - Southern Cross University\桌面\web 2\PROG2002 A2 Report.docx")
+SOURCE = Path(r"E:\下载\PROG2002 A2 Report (1).docx")
 OUTPUT = ROOT / "delivery" / "PROG2002 A2 Report.docx"
-EXPECTED_SHA256 = "1b26e13e83e4531786823d3af959997686c3bcb392ed81f2f52d328b314e5137"
+EXPECTED_SHA256 = "7bb46848dcf27f80db9ce62bca0f0b3486a879bf2b15b206b568f413aa96698f"
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 NS = {"w": W}
 QN = lambda name: f"{{{W}}}{name}"
@@ -47,7 +47,6 @@ ANSWERS = {
     ],
     23: [
         "All three endpoints use GET because each retrieves data without changing server state: the event collection, the category collection or a single event. Filters remain query parameters on the collection, while the selected event ID is a path parameter. This lets browsers and testing tools request a resource directly. POST, PUT and DELETE would change data; this A2 implementation has no registration, administration or other write operation, so those methods are not implemented merely because they appear in the template's examples.",
-        "Development note: AI assistance was used to draft and review code, tests, prose and the demo script. Student identity fields remain blank for completion before submission, and the demonstration must be recorded personally. The assessment brief's GenAI Use Level field is blank; this note does not assert course approval."
     ]
 }
 
@@ -92,7 +91,7 @@ def build():
         xml = etree.fromstring(src.read("word/document.xml"))
         body = xml.find("w:body", NS)
         paragraphs = [child for child in body if child.tag == QN("p")]
-        if len(paragraphs) != 26:
+        if len(paragraphs) != 31:
             raise RuntimeError("Unexpected template paragraph count")
         paragraphs[5].append(make_run("Harbourlight Community Events", bold=True))
         for index in (7, 9, 11, 12, 14, 15, 17, 18, 20, 21, 22, 23):
@@ -111,6 +110,36 @@ def build():
             text = "".join(paragraph.itertext())
             if text.startswith("For example, GET /api/categories has"):
                 keep_with_next(paragraph)
+        keep_with_next(paragraphs[26])
+        etree.SubElement(paragraphs[26].find("w:pPr", NS), QN("pageBreakBefore"))
+        body.remove(paragraphs[27])
+        body.remove(paragraphs[30])
+        fill_paragraph(paragraphs[28],
+            "I acknowledge that I have used GenAI tools to complete this assessment. "
+            "I used OpenAI Codex to analyse the assessment requirements, generate and revise "
+            "the database scripts, backend and frontend code, develop and review tests, "
+            "draft and revise this report, and prepare the bilingual demonstration script. "
+            "The assistance included substantial code and written-content generation, "
+            "not only language correction.")
+        acknowledgement_notes = [
+            "Scope of permission: the supplied Assessment Brief leaves the GenAI Use Level "
+            "field blank, and no separate permitted-use rules have been supplied in this "
+            "project conversation. This disclosure therefore does not confirm that every "
+            "use listed above falls within the Unit Assessor's permitted scope. That scope "
+            "must be checked before submission.",
+            "Chat log summary (not a verbatim transcript): the conversation covered "
+            "analysing the brief and report template; building the charity events website; "
+            "testing the API, database and browser workflows; preparing the report, source "
+            "ZIPs and demonstration script; uploading the project to GitHub; and updating "
+            "the report to this new template. This summary does not replace the original "
+            "conversation if the Unit Assessor requires a complete chat log."
+        ]
+        anchor = paragraphs[28]
+        for text in acknowledgement_notes:
+            new_para = deepcopy(blank_pattern)
+            fill_paragraph(new_para, text)
+            anchor.addnext(new_para)
+            anchor = new_para
         document_bytes = etree.tostring(xml, xml_declaration=True, encoding="UTF-8", standalone=True)
         core = etree.fromstring(src.read("docProps/core.xml"))
         for name in ("{http://purl.org/dc/elements/1.1/}creator", "{http://schemas.openxmlformats.org/package/2006/metadata/core-properties}lastModifiedBy"):
